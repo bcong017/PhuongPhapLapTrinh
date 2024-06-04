@@ -1,0 +1,254 @@
+﻿<Window x:Class="QuanLyGaraOto.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuanLyGaraOto"
+
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:uc="clr-namespace:QuanLyGaraOto.ProjectUserControl" 
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"
+        
+        mc:Ignorable="d"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize"
+        Title="Quản lý Gara ô tô" 
+        Height="810" Width="1447"
+        Background="Transparent"
+        AllowsTransparency="true"
+        x:Name="mainWindow">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Border CornerRadius="10" Background="White" BorderThickness="1" BorderBrush="LightBlue">
+        <Grid Background="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <uc:ControlBarUC Tag="{Binding Title, ElementName=mainWindow}"></uc:ControlBarUC>
+            </Grid>
+            <Border Grid.Row="1" CornerRadius="0 0 10 10">
+
+                <Grid>
+                    <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom" 
+                              Width="1383" Height="733" Margin="0,0,0,0"
+                              Background="Transparent" >
+                        <Border CornerRadius="0 0 10 10" Background="white" >
+                            <UserControl Content="{Binding SelectedViewModel}" Background="Transparent" />
+                        </Border>
+                    </Grid>
+
+                    <Grid Height="50" VerticalAlignment="Top">
+                        <Grid.Background>
+                            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                <GradientStop Color="#35a0fe" Offset="1"/>
+                                <GradientStop Color="#35a0fe" Offset="0.093"/>
+                            </LinearGradientBrush>
+                        </Grid.Background>
+                        <materialDesign:PopupBox
+                            HorizontalAlignment="Right" Margin="0,0,19.8,0"
+                                                 PlacementMode="BottomAndAlignCentres">
+                            <materialDesign:PopupBox.ToggleContent>
+                                <materialDesign:PackIcon Kind="ArrowDownDropCircleOutline" Width="30" Height="auto"
+                                                         Foreground="White" FontWeight="ExtraLight"></materialDesign:PackIcon>
+
+                            </materialDesign:PopupBox.ToggleContent>
+
+                            <StackPanel>
+                                <Button Command="{Binding OpenAccountInfoCommand}" Cursor="Hand">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <materialDesign:PackIcon Kind="Account" Width="25" Height="auto"></materialDesign:PackIcon>
+                                        <TextBlock Margin="5 0 5 -4" VerticalAlignment="Center">Thông tin tài khoản</TextBlock>
+                                    </StackPanel>
+                                </Button>
+
+                                <Button Command="{Binding CreateAccountCommand}" Cursor="Hand" Visibility="{Binding UpdateParamVisibility}">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <materialDesign:PackIcon Kind="Information" Width="25" Height="auto"></materialDesign:PackIcon>
+                                        <TextBlock Margin="5 0 5 -4" VerticalAlignment="Center">Tạo tài khoản</TextBlock>
+                                    </StackPanel>
+                                </Button>
+
+                                <Button x:Name="btnLogin"
+                                        Command="{Binding LogoutCommand}" 
+                                        CommandParameter="{Binding ElementName=mainWindow}"
+                                        Cursor="Hand">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <materialDesign:PackIcon Kind="Logout" Width="25" Height="auto"></materialDesign:PackIcon>
+                                        <TextBlock Margin="5 0 5 -4" VerticalAlignment="Center">Đăng xuất</TextBlock>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                        </materialDesign:PopupBox>
+                    </Grid>
+                    <Grid x:Name="GridNavigate" Width="60" HorizontalAlignment="Left"
+                    ClipToBounds="True"
+                    ScrollViewer.CanContentScroll="False" d:MouseLeave="GridNavigate_MouseLeave">
+
+                        <Border CornerRadius="0 0 0 10">
+
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#35a0fe" Offset="0.2"/>
+                                    <GradientStop Color="#b2eeff" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Grid Background="Transparent" x:Name="gridBtnListView" HorizontalAlignment="Left">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <Grid Grid.Row="0">
+
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <ToggleButton x:Name="ToogleBtn" Style="{DynamicResource MaterialDesignHamburgerToggleButton}"
+                                                      Height="25" Width="25"
+                                                      Margin="18 0 0 0"
+                                                      HorizontalAlignment="Center"
+                                                      Cursor="Hand">
+                                            <materialDesign:PackIcon Kind="Menu" Width="25" Height="25"/>
+                                            <ToggleButton.Triggers>
+                                                <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                                                    <BeginStoryboard>
+                                                        <Storyboard x:Name="HideGrid">
+
+                                                            <DoubleAnimation                                                   
+                                                            Storyboard.TargetName="GridNavigate"
+                                                            Storyboard.TargetProperty="Width"
+                                                            BeginTime="0:0:0"
+                                                            From="240" To="65"
+                                                            Duration="0:0:0.2">
+                                                            </DoubleAnimation>
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </EventTrigger>
+                                                <EventTrigger RoutedEvent="ToggleButton.Checked">
+                                                    <BeginStoryboard>
+                                                        <Storyboard x:Name="ShowGrid">
+                                                            <DoubleAnimation
+                                                            Storyboard.TargetName="GridNavigate"
+                                                            Storyboard.TargetProperty="Width"
+                                                            BeginTime="0:0:0"
+                                                            From="65" To="240"
+                                                            Duration="0:0:0.3">
+                                                            </DoubleAnimation>
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </EventTrigger>
+                                            </ToggleButton.Triggers>
+                                        </ToggleButton>
+
+                                        <TextBlock  Text="M E N U"
+                                                    Margin="30 10"
+                                                    VerticalAlignment="Center"/>
+                                    </StackPanel>
+
+                                </Grid>
+
+                                <Grid Grid.Row="1">
+                                    <ListView x:Name="ListViewNavigate" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="SelectionChanged">
+                                                <i:InvokeCommandAction Command="{Binding SelectViewCommand}" 
+                                                                       CommandParameter="{Binding ElementName=ListViewNavigate, Path=SelectedItem}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+
+                                        <ListViewItem Height="60" Tag="CarCheckIn" ToolTip="Lập phiếu tiếp nhận xe sửa"  Cursor="Hand" >
+                                            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                <materialDesign:PackIcon Kind="Car" Height="25" Width="25" Margin="10"/>
+                                                <TextBlock Text="Lập phiếu tiếp nhận xe sửa" VerticalAlignment="Center" Margin="20 10"/>
+                                            </StackPanel>
+                                        </ListViewItem>
+
+                                        <ListViewItem Height="60" Tag="RepairReceipt" ToolTip="Lập phiếu sửa chữa"  Cursor="Hand" >
+                                            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                <materialDesign:PackIcon Kind="Wrench" Height="25" Width="25" Margin="10"/>
+                                                <TextBlock Text="Lập phiếu sửa chữa" VerticalAlignment="Center" Margin="20 10"/>
+                                            </StackPanel>
+                                        </ListViewItem>
+
+                                        <ListViewItem Height="60" Tag="Search" ToolTip="Tra cứu" Cursor="Hand" >
+                                            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                <materialDesign:PackIcon Kind="Search" Height="25" Width="25" Margin="10"/>
+                                                <TextBlock Text="Tra cứu" VerticalAlignment="Center" Margin="20 10"/>
+                                            </StackPanel>
+                                        </ListViewItem>
+
+                                        <ListViewItem Height="60" Tag="Bill" ToolTip="Lập phiếu thu tiền" Cursor="Hand">
+                                            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                <materialDesign:PackIcon Kind="Receipt" Height="25" Width="25" Margin="10"/>
+                                                <TextBlock Text="Lập phiếu thu tiền" VerticalAlignment="Center" Margin="20 10"/>
+                                            </StackPanel>
+                                        </ListViewItem>
+
+                                        <ListViewItem Height="60" Tag="SalesReport" ToolTip="Báo cáo doanh số" Cursor="Hand">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                <materialDesign:PackIcon Kind="Cash" Height="25" Width="25" Margin="10"/>
+                                                <TextBlock Text="Báo cáo tháng" VerticalAlignment="Center" Margin="20 10"/>
+                                            </StackPanel>
+                                        </ListViewItem>
+
+                                        <ListViewItem Height="60" Tag="AccessoriesReport" Cursor="Hand" ToolTip="Báo cáo tồn">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                <materialDesign:PackIcon Kind="Calculator" Height="25" Width="25" Margin="10"/>
+                                                <TextBlock Text="Báo cáo tồn" VerticalAlignment="Center" Margin="20 10"/>
+                                            </StackPanel>
+                                        </ListViewItem>
+
+                                        <ListViewItem Height="60" Tag="AddAcessories" ToolTip="Nhập vật tư phụ tùng" Cursor="Hand">
+                                            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                <materialDesign:PackIcon Kind="Plus" Height="25" Width="25" Margin="10"/>
+                                                <TextBlock Text="Nhập vật tư phụ tùng" VerticalAlignment="Center" Margin="20 10"/>
+                                            </StackPanel>
+                                        </ListViewItem>
+
+                                        <ListViewItem Height="60" Tag="Show" ToolTip="Xem danh sách hiện có" Cursor="Hand">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                <materialDesign:PackIcon Kind="Store" Height="25" Width="25" Margin="10"/>
+                                                <TextBlock Text="Xem danh sách hiện có" VerticalAlignment="Center" Margin="20 10"/>
+                                            </StackPanel>
+                                        </ListViewItem>
+
+                                        <ListViewItem Height="60" Tag="Update" ToolTip="Cập nhật quy định" Visibility="{Binding UpdateParamVisibility}" Cursor="Hand" >
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                <materialDesign:PackIcon Kind="Update" Height="25" Width="25" Margin="10"/>
+                                                <TextBlock Text="Cập nhật quy định" VerticalAlignment="Center" Margin="20 10"/>
+                                            </StackPanel>
+                                        </ListViewItem>
+
+                                        
+
+                                    </ListView>
+
+                                </Grid>
+
+                            </Grid>
+
+                        </Border>
+
+                    </Grid>
+                </Grid>
+                
+            </Border>
+
+        </Grid>
+
+    </Border>
+
+</Window>

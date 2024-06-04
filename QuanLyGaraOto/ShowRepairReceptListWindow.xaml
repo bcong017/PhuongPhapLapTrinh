@@ -1,0 +1,71 @@
+﻿<Window x:Class="QuanLyGaraOto.ShowRepairReceptListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:QuanLyGaraOto.ViewUserControl.ViewUC"
+             
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:uc="clr-namespace:QuanLyGaraOto.ProjectUserControl"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal" 
+             TextOptions.TextRenderingMode="Auto"
+
+             mc:Ignorable="d"
+             WindowStyle="None"
+             WindowStartupLocation="CenterScreen"
+             ResizeMode="CanMinimize"
+             Title="Xem danh sách các phiếu sửa chữa" 
+             Height="700" Width="650"
+             Background="Transparent"
+             AllowsTransparency="true"
+             x:Name="showInputRecordWindow">
+    <Border CornerRadius="10" BorderThickness="2" BorderBrush="#4dabf7" Background="White">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <uc:ControlBarUC Tag="{Binding Title, ElementName=showInputRecordWindow}"></uc:ControlBarUC>
+            </Grid>
+
+            <materialDesign:Card VerticalAlignment="Top" Grid.Row="1">
+                <TextBlock Text="Danh sách các phiếu sửa chữa đã tạo" FontSize="30" FontWeight="Bold" TextAlignment="Center"></TextBlock>
+            </materialDesign:Card>
+
+            <materialDesign:Card Grid.Row="2" Margin="5">
+                <WrapPanel Margin="0 0 0 10">
+                    <ComboBox materialDesign:HintAssist.Hint="Biển số"
+                              Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="5 5 15 5"
+                              ItemsSource="{Binding CarList}" 
+                              SelectedItem="{Binding SelectedItem}" 
+                              DisplayMemberPath="BienSo"/>
+                    
+                    <Button Command="{Binding ShowCommand}" Content="Xuất" Margin="35 5 15 5" Width="130"></Button>
+                </WrapPanel>
+            </materialDesign:Card>
+
+            <materialDesign:Card Grid.Row="3" Margin="5" VerticalAlignment="Stretch">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
+                    <ListView ItemsSource="{Binding List}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="STT" DisplayMemberBinding="{Binding Number}"/>
+                                <GridViewColumn Header="Biển số xe" DisplayMemberBinding="{Binding Phieu.BienSo}"/>
+                                <GridViewColumn Header="Ngày sửa chữa" DisplayMemberBinding="{Binding Phieu.NgaySuaChua}"/>
+                                <GridViewColumn Header="Thành tiền" DisplayMemberBinding="{Binding Phieu.TongTien, StringFormat='#,0'}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </ScrollViewer>
+            </materialDesign:Card>
+        </Grid>
+
+    </Border>
+</Window>

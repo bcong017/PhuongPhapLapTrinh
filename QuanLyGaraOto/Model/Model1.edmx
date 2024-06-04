@@ -1,0 +1,1000 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GARAGE_MANAGEMENTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BAOCAODOANHSO">
+          <Key>
+            <PropertyRef Name="MaBCDS" />
+          </Key>
+          <Property Name="MaBCDS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ThoiGian" Type="smalldatetime" />
+          <Property Name="TongDoanhThu" Type="money" />
+        </EntityType>
+        <EntityType Name="BAOCAOTON">
+          <Key>
+            <PropertyRef Name="MaBCT" />
+          </Key>
+          <Property Name="MaBCT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaVatTu" Type="int" />
+          <Property Name="ThoiGian" Type="smalldatetime" />
+          <Property Name="TonDau" Type="int" />
+          <Property Name="PhatSinh" Type="int" />
+          <Property Name="TonCuoi" Type="int" />
+        </EntityType>
+        <EntityType Name="CT_BCDS">
+          <Key>
+            <PropertyRef Name="MaBCDS" />
+            <PropertyRef Name="MaHieuXe" />
+          </Key>
+          <Property Name="MaBCDS" Type="int" Nullable="false" />
+          <Property Name="MaHieuXe" Type="int" Nullable="false" />
+          <Property Name="SoLuotSua" Type="int" />
+          <Property Name="ThanhTien" Type="money" />
+          <Property Name="TiLe" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="CT_PSC">
+          <Key>
+            <PropertyRef Name="MaCTPSC" />
+          </Key>
+          <Property Name="MaCTPSC" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaPhieuSC" Type="int" />
+          <Property Name="NoiDung" Type="nvarchar(max)" />
+          <Property Name="SoLan" Type="int" />
+          <Property Name="MaTienCong" Type="int" />
+          <Property Name="ThanhTien" Type="money" />
+        </EntityType>
+        <EntityType Name="CT_PHIEUNHAP">
+          <Key>
+            <PropertyRef Name="MaPhieuNhap" />
+            <PropertyRef Name="MaVatTu" />
+          </Key>
+          <Property Name="MaPhieuNhap" Type="int" Nullable="false" />
+          <Property Name="MaVatTu" Type="int" Nullable="false" />
+          <Property Name="SoLuong" Type="int" />
+          <Property Name="DonGiaNhap" Type="money" />
+          <Property Name="DonGiaBan" Type="money" />
+          <Property Name="ThanhTien" Type="money" />
+        </EntityType>
+        <EntityType Name="CT_SUDUNGVATTU">
+          <Key>
+            <PropertyRef Name="MaCTPSC" />
+            <PropertyRef Name="MaVatTu" />
+          </Key>
+          <Property Name="MaCTPSC" Type="int" Nullable="false" />
+          <Property Name="MaVatTu" Type="int" Nullable="false" />
+          <Property Name="SoLuong" Type="int" />
+          <Property Name="DonGia" Type="money" />
+          <Property Name="ThanhTien" Type="money" />
+        </EntityType>
+        <EntityType Name="HIEUXE">
+          <Key>
+            <PropertyRef Name="MaHieuXe" />
+          </Key>
+          <Property Name="MaHieuXe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenHieuXe" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="PHIEUNHAP">
+          <Key>
+            <PropertyRef Name="MaPhieuNhap" />
+          </Key>
+          <Property Name="MaPhieuNhap" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NgayNhap" Type="smalldatetime" />
+          <Property Name="ThanhTien" Type="money" />
+        </EntityType>
+        <EntityType Name="PHIEUSUACHUA">
+          <Key>
+            <PropertyRef Name="MaPhieuSC" />
+          </Key>
+          <Property Name="MaPhieuSC" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BienSo" Type="nvarchar" MaxLength="20" />
+          <Property Name="NgaySuaChua" Type="smalldatetime" />
+          <Property Name="TongTien" Type="money" />
+        </EntityType>
+        <EntityType Name="PHIEUTHUTIEN">
+          <Key>
+            <PropertyRef Name="MaPTT" />
+          </Key>
+          <Property Name="MaPTT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BienSo" Type="nvarchar" MaxLength="20" />
+          <Property Name="NgayThuTien" Type="smalldatetime" />
+          <Property Name="SoTienThu" Type="money" />
+        </EntityType>
+        <EntityType Name="TAIKHOAN">
+          <Key>
+            <PropertyRef Name="MaTaiKhoan" />
+          </Key>
+          <Property Name="MaTaiKhoan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenTaiKhoan" Type="nvarchar(max)" />
+          <Property Name="MatKhau" Type="nvarchar(max)" />
+          <Property Name="HoTen" Type="nvarchar(max)" />
+          <Property Name="NgaySinh" Type="smalldatetime" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="QuyenHan" Type="int" />
+        </EntityType>
+        <EntityType Name="TIENCONG">
+          <Key>
+            <PropertyRef Name="MaTienCong" />
+          </Key>
+          <Property Name="MaTienCong" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenTienCong" Type="nvarchar(max)" />
+          <Property Name="GiaTienCong" Type="money" />
+        </EntityType>
+        <EntityType Name="THAMSO">
+          <Key>
+            <PropertyRef Name="MaThamSo" />
+          </Key>
+          <Property Name="MaThamSo" Type="int" Nullable="false" />
+          <Property Name="SoTienThu" Type="bit" />
+          <Property Name="XeToiDa" Type="int" />
+          <Property Name="PhanTram" Type="float" />
+          <Property Name="ThangBaoCao" Type="int" />
+        </EntityType>
+        <EntityType Name="VAITRO">
+          <Key>
+            <PropertyRef Name="MaVaiTro" />
+          </Key>
+          <Property Name="MaVaiTro" Type="int" Nullable="false" />
+          <Property Name="TenVaiTro" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="VATTU">
+          <Key>
+            <PropertyRef Name="MaVatTu" />
+          </Key>
+          <Property Name="MaVatTu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenVatTu" Type="nvarchar(max)" />
+          <Property Name="DonGiaHienTai" Type="money" />
+          <Property Name="SoLuongTon" Type="int" />
+        </EntityType>
+        <EntityType Name="XE">
+          <Key>
+            <PropertyRef Name="BienSo" />
+          </Key>
+          <Property Name="BienSo" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="TenChuXe" Type="nvarchar(max)" />
+          <Property Name="DienThoai" Type="nvarchar" MaxLength="20" />
+          <Property Name="DiaChi" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="NgayTiepNhan" Type="smalldatetime" />
+          <Property Name="MaHieuXe" Type="int" />
+          <Property Name="TienNo" Type="money" />
+        </EntityType>
+        <Association Name="FK_BCT_MaVatTu">
+          <End Role="VATTU" Type="Self.VATTU" Multiplicity="0..1" />
+          <End Role="BAOCAOTON" Type="Self.BAOCAOTON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VATTU">
+              <PropertyRef Name="MaVatTu" />
+            </Principal>
+            <Dependent Role="BAOCAOTON">
+              <PropertyRef Name="MaVatTu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CT_BCDS_MaHieuXe">
+          <End Role="HIEUXE" Type="Self.HIEUXE" Multiplicity="1" />
+          <End Role="CT_BCDS" Type="Self.CT_BCDS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HIEUXE">
+              <PropertyRef Name="MaHieuXe" />
+            </Principal>
+            <Dependent Role="CT_BCDS">
+              <PropertyRef Name="MaHieuXe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaBCDS">
+          <End Role="BAOCAODOANHSO" Type="Self.BAOCAODOANHSO" Multiplicity="1" />
+          <End Role="CT_BCDS" Type="Self.CT_BCDS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BAOCAODOANHSO">
+              <PropertyRef Name="MaBCDS" />
+            </Principal>
+            <Dependent Role="CT_BCDS">
+              <PropertyRef Name="MaBCDS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaCTPSC">
+          <End Role="CT_PSC" Type="Self.CT_PSC" Multiplicity="1" />
+          <End Role="CT_SUDUNGVATTU" Type="Self.CT_SUDUNGVATTU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CT_PSC">
+              <PropertyRef Name="MaCTPSC" />
+            </Principal>
+            <Dependent Role="CT_SUDUNGVATTU">
+              <PropertyRef Name="MaCTPSC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaPhieuNhap">
+          <End Role="PHIEUNHAP" Type="Self.PHIEUNHAP" Multiplicity="1" />
+          <End Role="CT_PHIEUNHAP" Type="Self.CT_PHIEUNHAP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHIEUNHAP">
+              <PropertyRef Name="MaPhieuNhap" />
+            </Principal>
+            <Dependent Role="CT_PHIEUNHAP">
+              <PropertyRef Name="MaPhieuNhap" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaPhieuSC">
+          <End Role="PHIEUSUACHUA" Type="Self.PHIEUSUACHUA" Multiplicity="0..1" />
+          <End Role="CT_PSC" Type="Self.CT_PSC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHIEUSUACHUA">
+              <PropertyRef Name="MaPhieuSC" />
+            </Principal>
+            <Dependent Role="CT_PSC">
+              <PropertyRef Name="MaPhieuSC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaTienCong">
+          <End Role="TIENCONG" Type="Self.TIENCONG" Multiplicity="0..1" />
+          <End Role="CT_PSC" Type="Self.CT_PSC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIENCONG">
+              <PropertyRef Name="MaTienCong" />
+            </Principal>
+            <Dependent Role="CT_PSC">
+              <PropertyRef Name="MaTienCong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PNVT_MaVatTu">
+          <End Role="VATTU" Type="Self.VATTU" Multiplicity="1" />
+          <End Role="CT_PHIEUNHAP" Type="Self.CT_PHIEUNHAP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VATTU">
+              <PropertyRef Name="MaVatTu" />
+            </Principal>
+            <Dependent Role="CT_PHIEUNHAP">
+              <PropertyRef Name="MaVatTu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PSC_BienSo">
+          <End Role="XE" Type="Self.XE" Multiplicity="0..1" />
+          <End Role="PHIEUSUACHUA" Type="Self.PHIEUSUACHUA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="XE">
+              <PropertyRef Name="BienSo" />
+            </Principal>
+            <Dependent Role="PHIEUSUACHUA">
+              <PropertyRef Name="BienSo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PTT_BienSo">
+          <End Role="XE" Type="Self.XE" Multiplicity="0..1" />
+          <End Role="PHIEUTHUTIEN" Type="Self.PHIEUTHUTIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="XE">
+              <PropertyRef Name="BienSo" />
+            </Principal>
+            <Dependent Role="PHIEUTHUTIEN">
+              <PropertyRef Name="BienSo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuyenHan">
+          <End Role="VAITRO" Type="Self.VAITRO" Multiplicity="0..1" />
+          <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VAITRO">
+              <PropertyRef Name="MaVaiTro" />
+            </Principal>
+            <Dependent Role="TAIKHOAN">
+              <PropertyRef Name="QuyenHan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SDVT_MaVatTu">
+          <End Role="VATTU" Type="Self.VATTU" Multiplicity="1" />
+          <End Role="CT_SUDUNGVATTU" Type="Self.CT_SUDUNGVATTU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VATTU">
+              <PropertyRef Name="MaVatTu" />
+            </Principal>
+            <Dependent Role="CT_SUDUNGVATTU">
+              <PropertyRef Name="MaVatTu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_XE_MaHieuXe">
+          <End Role="HIEUXE" Type="Self.HIEUXE" Multiplicity="0..1" />
+          <End Role="XE" Type="Self.XE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HIEUXE">
+              <PropertyRef Name="MaHieuXe" />
+            </Principal>
+            <Dependent Role="XE">
+              <PropertyRef Name="MaHieuXe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GARAGE_MANAGEMENTModelStoreContainer">
+          <EntitySet Name="BAOCAODOANHSO" EntityType="Self.BAOCAODOANHSO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BAOCAOTON" EntityType="Self.BAOCAOTON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CT_BCDS" EntityType="Self.CT_BCDS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CT_PSC" EntityType="Self.CT_PSC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CT_PHIEUNHAP" EntityType="Self.CT_PHIEUNHAP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CT_SUDUNGVATTU" EntityType="Self.CT_SUDUNGVATTU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HIEUXE" EntityType="Self.HIEUXE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHIEUNHAP" EntityType="Self.PHIEUNHAP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHIEUSUACHUA" EntityType="Self.PHIEUSUACHUA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHIEUTHUTIEN" EntityType="Self.PHIEUTHUTIEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TAIKHOAN" EntityType="Self.TAIKHOAN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIENCONG" EntityType="Self.TIENCONG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THAMSO" EntityType="Self.THAMSO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VAITRO" EntityType="Self.VAITRO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VATTU" EntityType="Self.VATTU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="XE" EntityType="Self.XE" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BCT_MaVatTu" Association="Self.FK_BCT_MaVatTu">
+            <End Role="VATTU" EntitySet="VATTU" />
+            <End Role="BAOCAOTON" EntitySet="BAOCAOTON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CT_BCDS_MaHieuXe" Association="Self.FK_CT_BCDS_MaHieuXe">
+            <End Role="HIEUXE" EntitySet="HIEUXE" />
+            <End Role="CT_BCDS" EntitySet="CT_BCDS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaBCDS" Association="Self.FK_MaBCDS">
+            <End Role="BAOCAODOANHSO" EntitySet="BAOCAODOANHSO" />
+            <End Role="CT_BCDS" EntitySet="CT_BCDS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaCTPSC" Association="Self.FK_MaCTPSC">
+            <End Role="CT_PSC" EntitySet="CT_PSC" />
+            <End Role="CT_SUDUNGVATTU" EntitySet="CT_SUDUNGVATTU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaPhieuNhap" Association="Self.FK_MaPhieuNhap">
+            <End Role="PHIEUNHAP" EntitySet="PHIEUNHAP" />
+            <End Role="CT_PHIEUNHAP" EntitySet="CT_PHIEUNHAP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaPhieuSC" Association="Self.FK_MaPhieuSC">
+            <End Role="PHIEUSUACHUA" EntitySet="PHIEUSUACHUA" />
+            <End Role="CT_PSC" EntitySet="CT_PSC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaTienCong" Association="Self.FK_MaTienCong">
+            <End Role="TIENCONG" EntitySet="TIENCONG" />
+            <End Role="CT_PSC" EntitySet="CT_PSC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PNVT_MaVatTu" Association="Self.FK_PNVT_MaVatTu">
+            <End Role="VATTU" EntitySet="VATTU" />
+            <End Role="CT_PHIEUNHAP" EntitySet="CT_PHIEUNHAP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PSC_BienSo" Association="Self.FK_PSC_BienSo">
+            <End Role="XE" EntitySet="XE" />
+            <End Role="PHIEUSUACHUA" EntitySet="PHIEUSUACHUA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PTT_BienSo" Association="Self.FK_PTT_BienSo">
+            <End Role="XE" EntitySet="XE" />
+            <End Role="PHIEUTHUTIEN" EntitySet="PHIEUTHUTIEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuyenHan" Association="Self.FK_QuyenHan">
+            <End Role="VAITRO" EntitySet="VAITRO" />
+            <End Role="TAIKHOAN" EntitySet="TAIKHOAN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SDVT_MaVatTu" Association="Self.FK_SDVT_MaVatTu">
+            <End Role="VATTU" EntitySet="VATTU" />
+            <End Role="CT_SUDUNGVATTU" EntitySet="CT_SUDUNGVATTU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_XE_MaHieuXe" Association="Self.FK_XE_MaHieuXe">
+            <End Role="HIEUXE" EntitySet="HIEUXE" />
+            <End Role="XE" EntitySet="XE" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GARAGE_MANAGEMENTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="GARAGE_MANAGEMENTEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BAOCAODOANHSOes" EntityType="GARAGE_MANAGEMENTModel.BAOCAODOANHSO" />
+          <EntitySet Name="BAOCAOTONs" EntityType="GARAGE_MANAGEMENTModel.BAOCAOTON" />
+          <EntitySet Name="CT_BCDS" EntityType="GARAGE_MANAGEMENTModel.CT_BCDS" />
+          <EntitySet Name="CT_PSC" EntityType="GARAGE_MANAGEMENTModel.CT_PSC" />
+          <EntitySet Name="CT_PHIEUNHAP" EntityType="GARAGE_MANAGEMENTModel.CT_PHIEUNHAP" />
+          <EntitySet Name="CT_SUDUNGVATTU" EntityType="GARAGE_MANAGEMENTModel.CT_SUDUNGVATTU" />
+          <EntitySet Name="HIEUXEs" EntityType="GARAGE_MANAGEMENTModel.HIEUXE" />
+          <EntitySet Name="PHIEUNHAPs" EntityType="GARAGE_MANAGEMENTModel.PHIEUNHAP" />
+          <EntitySet Name="PHIEUSUACHUAs" EntityType="GARAGE_MANAGEMENTModel.PHIEUSUACHUA" />
+          <EntitySet Name="PHIEUTHUTIENs" EntityType="GARAGE_MANAGEMENTModel.PHIEUTHUTIEN" />
+          <EntitySet Name="TAIKHOANs" EntityType="GARAGE_MANAGEMENTModel.TAIKHOAN" />
+          <EntitySet Name="TIENCONGs" EntityType="GARAGE_MANAGEMENTModel.TIENCONG" />
+          <EntitySet Name="THAMSOes" EntityType="GARAGE_MANAGEMENTModel.THAMSO" />
+          <EntitySet Name="VAITROes" EntityType="GARAGE_MANAGEMENTModel.VAITRO" />
+          <EntitySet Name="VATTUs" EntityType="GARAGE_MANAGEMENTModel.VATTU" />
+          <EntitySet Name="XEs" EntityType="GARAGE_MANAGEMENTModel.XE" />
+          <AssociationSet Name="FK_MaBCDS" Association="GARAGE_MANAGEMENTModel.FK_MaBCDS">
+            <End Role="BAOCAODOANHSO" EntitySet="BAOCAODOANHSOes" />
+            <End Role="CT_BCDS" EntitySet="CT_BCDS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BCT_MaVatTu" Association="GARAGE_MANAGEMENTModel.FK_BCT_MaVatTu">
+            <End Role="VATTU" EntitySet="VATTUs" />
+            <End Role="BAOCAOTON" EntitySet="BAOCAOTONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CT_BCDS_MaHieuXe" Association="GARAGE_MANAGEMENTModel.FK_CT_BCDS_MaHieuXe">
+            <End Role="HIEUXE" EntitySet="HIEUXEs" />
+            <End Role="CT_BCDS" EntitySet="CT_BCDS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaCTPSC" Association="GARAGE_MANAGEMENTModel.FK_MaCTPSC">
+            <End Role="CT_PSC" EntitySet="CT_PSC" />
+            <End Role="CT_SUDUNGVATTU" EntitySet="CT_SUDUNGVATTU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaPhieuSC" Association="GARAGE_MANAGEMENTModel.FK_MaPhieuSC">
+            <End Role="PHIEUSUACHUA" EntitySet="PHIEUSUACHUAs" />
+            <End Role="CT_PSC" EntitySet="CT_PSC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaTienCong" Association="GARAGE_MANAGEMENTModel.FK_MaTienCong">
+            <End Role="TIENCONG" EntitySet="TIENCONGs" />
+            <End Role="CT_PSC" EntitySet="CT_PSC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaPhieuNhap" Association="GARAGE_MANAGEMENTModel.FK_MaPhieuNhap">
+            <End Role="PHIEUNHAP" EntitySet="PHIEUNHAPs" />
+            <End Role="CT_PHIEUNHAP" EntitySet="CT_PHIEUNHAP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PNVT_MaVatTu" Association="GARAGE_MANAGEMENTModel.FK_PNVT_MaVatTu">
+            <End Role="VATTU" EntitySet="VATTUs" />
+            <End Role="CT_PHIEUNHAP" EntitySet="CT_PHIEUNHAP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SDVT_MaVatTu" Association="GARAGE_MANAGEMENTModel.FK_SDVT_MaVatTu">
+            <End Role="VATTU" EntitySet="VATTUs" />
+            <End Role="CT_SUDUNGVATTU" EntitySet="CT_SUDUNGVATTU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_XE_MaHieuXe" Association="GARAGE_MANAGEMENTModel.FK_XE_MaHieuXe">
+            <End Role="HIEUXE" EntitySet="HIEUXEs" />
+            <End Role="XE" EntitySet="XEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PSC_BienSo" Association="GARAGE_MANAGEMENTModel.FK_PSC_BienSo">
+            <End Role="XE" EntitySet="XEs" />
+            <End Role="PHIEUSUACHUA" EntitySet="PHIEUSUACHUAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PTT_BienSo" Association="GARAGE_MANAGEMENTModel.FK_PTT_BienSo">
+            <End Role="XE" EntitySet="XEs" />
+            <End Role="PHIEUTHUTIEN" EntitySet="PHIEUTHUTIENs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuyenHan" Association="GARAGE_MANAGEMENTModel.FK_QuyenHan">
+            <End Role="VAITRO" EntitySet="VAITROes" />
+            <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BAOCAODOANHSO">
+          <Key>
+            <PropertyRef Name="MaBCDS" />
+          </Key>
+          <Property Name="MaBCDS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ThoiGian" Type="DateTime" Precision="0" />
+          <Property Name="TongDoanhThu" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="CT_BCDS" Relationship="GARAGE_MANAGEMENTModel.FK_MaBCDS" FromRole="BAOCAODOANHSO" ToRole="CT_BCDS" />
+        </EntityType>
+        <EntityType Name="BAOCAOTON">
+          <Key>
+            <PropertyRef Name="MaBCT" />
+          </Key>
+          <Property Name="MaBCT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaVatTu" Type="Int32" />
+          <Property Name="ThoiGian" Type="DateTime" Precision="0" />
+          <Property Name="TonDau" Type="Int32" />
+          <Property Name="PhatSinh" Type="Int32" />
+          <Property Name="TonCuoi" Type="Int32" />
+          <NavigationProperty Name="VATTU" Relationship="GARAGE_MANAGEMENTModel.FK_BCT_MaVatTu" FromRole="BAOCAOTON" ToRole="VATTU" />
+        </EntityType>
+        <EntityType Name="CT_BCDS">
+          <Key>
+            <PropertyRef Name="MaBCDS" />
+            <PropertyRef Name="MaHieuXe" />
+          </Key>
+          <Property Name="MaBCDS" Type="Int32" Nullable="false" />
+          <Property Name="MaHieuXe" Type="Int32" Nullable="false" />
+          <Property Name="SoLuotSua" Type="Int32" />
+          <Property Name="ThanhTien" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TiLe" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BAOCAODOANHSO" Relationship="GARAGE_MANAGEMENTModel.FK_MaBCDS" FromRole="CT_BCDS" ToRole="BAOCAODOANHSO" />
+          <NavigationProperty Name="HIEUXE" Relationship="GARAGE_MANAGEMENTModel.FK_CT_BCDS_MaHieuXe" FromRole="CT_BCDS" ToRole="HIEUXE" />
+        </EntityType>
+        <EntityType Name="CT_PSC">
+          <Key>
+            <PropertyRef Name="MaCTPSC" />
+          </Key>
+          <Property Name="MaCTPSC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaPhieuSC" Type="Int32" />
+          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SoLan" Type="Int32" />
+          <Property Name="MaTienCong" Type="Int32" />
+          <Property Name="ThanhTien" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="CT_SUDUNGVATTU" Relationship="GARAGE_MANAGEMENTModel.FK_MaCTPSC" FromRole="CT_PSC" ToRole="CT_SUDUNGVATTU" />
+          <NavigationProperty Name="PHIEUSUACHUA" Relationship="GARAGE_MANAGEMENTModel.FK_MaPhieuSC" FromRole="CT_PSC" ToRole="PHIEUSUACHUA" />
+          <NavigationProperty Name="TIENCONG" Relationship="GARAGE_MANAGEMENTModel.FK_MaTienCong" FromRole="CT_PSC" ToRole="TIENCONG" />
+        </EntityType>
+        <EntityType Name="CT_PHIEUNHAP">
+          <Key>
+            <PropertyRef Name="MaPhieuNhap" />
+            <PropertyRef Name="MaVatTu" />
+          </Key>
+          <Property Name="MaPhieuNhap" Type="Int32" Nullable="false" />
+          <Property Name="MaVatTu" Type="Int32" Nullable="false" />
+          <Property Name="SoLuong" Type="Int32" />
+          <Property Name="DonGiaNhap" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DonGiaBan" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ThanhTien" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="PHIEUNHAP" Relationship="GARAGE_MANAGEMENTModel.FK_MaPhieuNhap" FromRole="CT_PHIEUNHAP" ToRole="PHIEUNHAP" />
+          <NavigationProperty Name="VATTU" Relationship="GARAGE_MANAGEMENTModel.FK_PNVT_MaVatTu" FromRole="CT_PHIEUNHAP" ToRole="VATTU" />
+        </EntityType>
+        <EntityType Name="CT_SUDUNGVATTU">
+          <Key>
+            <PropertyRef Name="MaCTPSC" />
+            <PropertyRef Name="MaVatTu" />
+          </Key>
+          <Property Name="MaCTPSC" Type="Int32" Nullable="false" />
+          <Property Name="MaVatTu" Type="Int32" Nullable="false" />
+          <Property Name="SoLuong" Type="Int32" />
+          <Property Name="DonGia" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ThanhTien" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="CT_PSC" Relationship="GARAGE_MANAGEMENTModel.FK_MaCTPSC" FromRole="CT_SUDUNGVATTU" ToRole="CT_PSC" />
+          <NavigationProperty Name="VATTU" Relationship="GARAGE_MANAGEMENTModel.FK_SDVT_MaVatTu" FromRole="CT_SUDUNGVATTU" ToRole="VATTU" />
+        </EntityType>
+        <EntityType Name="HIEUXE">
+          <Key>
+            <PropertyRef Name="MaHieuXe" />
+          </Key>
+          <Property Name="MaHieuXe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenHieuXe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CT_BCDS" Relationship="GARAGE_MANAGEMENTModel.FK_CT_BCDS_MaHieuXe" FromRole="HIEUXE" ToRole="CT_BCDS" />
+          <NavigationProperty Name="XEs" Relationship="GARAGE_MANAGEMENTModel.FK_XE_MaHieuXe" FromRole="HIEUXE" ToRole="XE" />
+        </EntityType>
+        <EntityType Name="PHIEUNHAP">
+          <Key>
+            <PropertyRef Name="MaPhieuNhap" />
+          </Key>
+          <Property Name="MaPhieuNhap" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NgayNhap" Type="DateTime" Precision="0" />
+          <Property Name="ThanhTien" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="CT_PHIEUNHAP" Relationship="GARAGE_MANAGEMENTModel.FK_MaPhieuNhap" FromRole="PHIEUNHAP" ToRole="CT_PHIEUNHAP" />
+        </EntityType>
+        <EntityType Name="PHIEUSUACHUA">
+          <Key>
+            <PropertyRef Name="MaPhieuSC" />
+          </Key>
+          <Property Name="MaPhieuSC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BienSo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NgaySuaChua" Type="DateTime" Precision="0" />
+          <Property Name="TongTien" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="CT_PSC" Relationship="GARAGE_MANAGEMENTModel.FK_MaPhieuSC" FromRole="PHIEUSUACHUA" ToRole="CT_PSC" />
+          <NavigationProperty Name="XE" Relationship="GARAGE_MANAGEMENTModel.FK_PSC_BienSo" FromRole="PHIEUSUACHUA" ToRole="XE" />
+        </EntityType>
+        <EntityType Name="PHIEUTHUTIEN">
+          <Key>
+            <PropertyRef Name="MaPTT" />
+          </Key>
+          <Property Name="MaPTT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BienSo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NgayThuTien" Type="DateTime" Precision="0" />
+          <Property Name="SoTienThu" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="XE" Relationship="GARAGE_MANAGEMENTModel.FK_PTT_BienSo" FromRole="PHIEUTHUTIEN" ToRole="XE" />
+        </EntityType>
+        <EntityType Name="TAIKHOAN">
+          <Key>
+            <PropertyRef Name="MaTaiKhoan" />
+          </Key>
+          <Property Name="MaTaiKhoan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenTaiKhoan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MatKhau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HoTen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="QuyenHan" Type="Int32" />
+          <NavigationProperty Name="VAITRO" Relationship="GARAGE_MANAGEMENTModel.FK_QuyenHan" FromRole="TAIKHOAN" ToRole="VAITRO" />
+        </EntityType>
+        <EntityType Name="TIENCONG">
+          <Key>
+            <PropertyRef Name="MaTienCong" />
+          </Key>
+          <Property Name="MaTienCong" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenTienCong" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GiaTienCong" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="CT_PSC" Relationship="GARAGE_MANAGEMENTModel.FK_MaTienCong" FromRole="TIENCONG" ToRole="CT_PSC" />
+        </EntityType>
+        <EntityType Name="THAMSO">
+          <Key>
+            <PropertyRef Name="MaThamSo" />
+          </Key>
+          <Property Name="MaThamSo" Type="Int32" Nullable="false" />
+          <Property Name="SoTienThu" Type="Boolean" />
+          <Property Name="XeToiDa" Type="Int32" />
+          <Property Name="PhanTram" Type="Double" />
+          <Property Name="ThangBaoCao" Type="Int32" />
+        </EntityType>
+        <EntityType Name="VAITRO">
+          <Key>
+            <PropertyRef Name="MaVaiTro" />
+          </Key>
+          <Property Name="MaVaiTro" Type="Int32" Nullable="false" />
+          <Property Name="TenVaiTro" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TAIKHOANs" Relationship="GARAGE_MANAGEMENTModel.FK_QuyenHan" FromRole="VAITRO" ToRole="TAIKHOAN" />
+        </EntityType>
+        <EntityType Name="VATTU">
+          <Key>
+            <PropertyRef Name="MaVatTu" />
+          </Key>
+          <Property Name="MaVatTu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenVatTu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DonGiaHienTai" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SoLuongTon" Type="Int32" />
+          <NavigationProperty Name="BAOCAOTONs" Relationship="GARAGE_MANAGEMENTModel.FK_BCT_MaVatTu" FromRole="VATTU" ToRole="BAOCAOTON" />
+          <NavigationProperty Name="CT_PHIEUNHAP" Relationship="GARAGE_MANAGEMENTModel.FK_PNVT_MaVatTu" FromRole="VATTU" ToRole="CT_PHIEUNHAP" />
+          <NavigationProperty Name="CT_SUDUNGVATTU" Relationship="GARAGE_MANAGEMENTModel.FK_SDVT_MaVatTu" FromRole="VATTU" ToRole="CT_SUDUNGVATTU" />
+        </EntityType>
+        <EntityType Name="XE">
+          <Key>
+            <PropertyRef Name="BienSo" />
+          </Key>
+          <Property Name="BienSo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TenChuXe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DienThoai" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NgayTiepNhan" Type="DateTime" Precision="0" />
+          <Property Name="MaHieuXe" Type="Int32" />
+          <Property Name="TienNo" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="HIEUXE" Relationship="GARAGE_MANAGEMENTModel.FK_XE_MaHieuXe" FromRole="XE" ToRole="HIEUXE" />
+          <NavigationProperty Name="PHIEUSUACHUAs" Relationship="GARAGE_MANAGEMENTModel.FK_PSC_BienSo" FromRole="XE" ToRole="PHIEUSUACHUA" />
+          <NavigationProperty Name="PHIEUTHUTIENs" Relationship="GARAGE_MANAGEMENTModel.FK_PTT_BienSo" FromRole="XE" ToRole="PHIEUTHUTIEN" />
+        </EntityType>
+        <Association Name="FK_MaBCDS">
+          <End Type="GARAGE_MANAGEMENTModel.BAOCAODOANHSO" Role="BAOCAODOANHSO" Multiplicity="1" />
+          <End Type="GARAGE_MANAGEMENTModel.CT_BCDS" Role="CT_BCDS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BAOCAODOANHSO">
+              <PropertyRef Name="MaBCDS" />
+            </Principal>
+            <Dependent Role="CT_BCDS">
+              <PropertyRef Name="MaBCDS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BCT_MaVatTu">
+          <End Type="GARAGE_MANAGEMENTModel.VATTU" Role="VATTU" Multiplicity="0..1" />
+          <End Type="GARAGE_MANAGEMENTModel.BAOCAOTON" Role="BAOCAOTON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VATTU">
+              <PropertyRef Name="MaVatTu" />
+            </Principal>
+            <Dependent Role="BAOCAOTON">
+              <PropertyRef Name="MaVatTu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CT_BCDS_MaHieuXe">
+          <End Type="GARAGE_MANAGEMENTModel.HIEUXE" Role="HIEUXE" Multiplicity="1" />
+          <End Type="GARAGE_MANAGEMENTModel.CT_BCDS" Role="CT_BCDS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HIEUXE">
+              <PropertyRef Name="MaHieuXe" />
+            </Principal>
+            <Dependent Role="CT_BCDS">
+              <PropertyRef Name="MaHieuXe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaCTPSC">
+          <End Type="GARAGE_MANAGEMENTModel.CT_PSC" Role="CT_PSC" Multiplicity="1" />
+          <End Type="GARAGE_MANAGEMENTModel.CT_SUDUNGVATTU" Role="CT_SUDUNGVATTU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CT_PSC">
+              <PropertyRef Name="MaCTPSC" />
+            </Principal>
+            <Dependent Role="CT_SUDUNGVATTU">
+              <PropertyRef Name="MaCTPSC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaPhieuSC">
+          <End Type="GARAGE_MANAGEMENTModel.PHIEUSUACHUA" Role="PHIEUSUACHUA" Multiplicity="0..1" />
+          <End Type="GARAGE_MANAGEMENTModel.CT_PSC" Role="CT_PSC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHIEUSUACHUA">
+              <PropertyRef Name="MaPhieuSC" />
+            </Principal>
+            <Dependent Role="CT_PSC">
+              <PropertyRef Name="MaPhieuSC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaTienCong">
+          <End Type="GARAGE_MANAGEMENTModel.TIENCONG" Role="TIENCONG" Multiplicity="0..1" />
+          <End Type="GARAGE_MANAGEMENTModel.CT_PSC" Role="CT_PSC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIENCONG">
+              <PropertyRef Name="MaTienCong" />
+            </Principal>
+            <Dependent Role="CT_PSC">
+              <PropertyRef Name="MaTienCong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaPhieuNhap">
+          <End Type="GARAGE_MANAGEMENTModel.PHIEUNHAP" Role="PHIEUNHAP" Multiplicity="1" />
+          <End Type="GARAGE_MANAGEMENTModel.CT_PHIEUNHAP" Role="CT_PHIEUNHAP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHIEUNHAP">
+              <PropertyRef Name="MaPhieuNhap" />
+            </Principal>
+            <Dependent Role="CT_PHIEUNHAP">
+              <PropertyRef Name="MaPhieuNhap" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PNVT_MaVatTu">
+          <End Type="GARAGE_MANAGEMENTModel.VATTU" Role="VATTU" Multiplicity="1" />
+          <End Type="GARAGE_MANAGEMENTModel.CT_PHIEUNHAP" Role="CT_PHIEUNHAP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VATTU">
+              <PropertyRef Name="MaVatTu" />
+            </Principal>
+            <Dependent Role="CT_PHIEUNHAP">
+              <PropertyRef Name="MaVatTu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SDVT_MaVatTu">
+          <End Type="GARAGE_MANAGEMENTModel.VATTU" Role="VATTU" Multiplicity="1" />
+          <End Type="GARAGE_MANAGEMENTModel.CT_SUDUNGVATTU" Role="CT_SUDUNGVATTU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VATTU">
+              <PropertyRef Name="MaVatTu" />
+            </Principal>
+            <Dependent Role="CT_SUDUNGVATTU">
+              <PropertyRef Name="MaVatTu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_XE_MaHieuXe">
+          <End Type="GARAGE_MANAGEMENTModel.HIEUXE" Role="HIEUXE" Multiplicity="0..1" />
+          <End Type="GARAGE_MANAGEMENTModel.XE" Role="XE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HIEUXE">
+              <PropertyRef Name="MaHieuXe" />
+            </Principal>
+            <Dependent Role="XE">
+              <PropertyRef Name="MaHieuXe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PSC_BienSo">
+          <End Type="GARAGE_MANAGEMENTModel.XE" Role="XE" Multiplicity="0..1" />
+          <End Type="GARAGE_MANAGEMENTModel.PHIEUSUACHUA" Role="PHIEUSUACHUA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="XE">
+              <PropertyRef Name="BienSo" />
+            </Principal>
+            <Dependent Role="PHIEUSUACHUA">
+              <PropertyRef Name="BienSo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PTT_BienSo">
+          <End Type="GARAGE_MANAGEMENTModel.XE" Role="XE" Multiplicity="0..1" />
+          <End Type="GARAGE_MANAGEMENTModel.PHIEUTHUTIEN" Role="PHIEUTHUTIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="XE">
+              <PropertyRef Name="BienSo" />
+            </Principal>
+            <Dependent Role="PHIEUTHUTIEN">
+              <PropertyRef Name="BienSo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuyenHan">
+          <End Type="GARAGE_MANAGEMENTModel.VAITRO" Role="VAITRO" Multiplicity="0..1" />
+          <End Type="GARAGE_MANAGEMENTModel.TAIKHOAN" Role="TAIKHOAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VAITRO">
+              <PropertyRef Name="MaVaiTro" />
+            </Principal>
+            <Dependent Role="TAIKHOAN">
+              <PropertyRef Name="QuyenHan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GARAGE_MANAGEMENTModelStoreContainer" CdmEntityContainer="GARAGE_MANAGEMENTEntities">
+          <EntitySetMapping Name="BAOCAODOANHSOes">
+            <EntityTypeMapping TypeName="GARAGE_MANAGEMENTModel.BAOCAODOANHSO">
+              <MappingFragment StoreEntitySet="BAOCAODOANHSO">
+                <ScalarProperty Name="TongDoanhThu" ColumnName="TongDoanhThu" />
+                <ScalarProperty Name="ThoiGian" ColumnName="ThoiGian" />
+                <ScalarProperty Name="MaBCDS" ColumnName="MaBCDS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BAOCAOTONs">
+            <EntityTypeMapping TypeName="GARAGE_MANAGEMENTModel.BAOCAOTON">
+              <MappingFragment StoreEntitySet="BAOCAOTON">
+                <ScalarProperty Name="TonCuoi" ColumnName="TonCuoi" />
+                <ScalarProperty Name="PhatSinh" ColumnName="PhatSinh" />
+                <ScalarProperty Name="TonDau" ColumnName="TonDau" />
+                <ScalarProperty Name="ThoiGian" ColumnName="ThoiGian" />
+                <ScalarProperty Name="MaVatTu" ColumnName="MaVatTu" />
+                <ScalarProperty Name="MaBCT" ColumnName="MaBCT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CT_BCDS">
+            <EntityTypeMapping TypeName="GARAGE_MANAGEMENTModel.CT_BCDS">
+              <MappingFragment StoreEntitySet="CT_BCDS">
+                <ScalarProperty Name="TiLe" ColumnName="TiLe" />
+                <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
+                <ScalarProperty Name="SoLuotSua" ColumnName="SoLuotSua" />
+                <ScalarProperty Name="MaHieuXe" ColumnName="MaHieuXe" />
+                <ScalarProperty Name="MaBCDS" ColumnName="MaBCDS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CT_PSC">
+            <EntityTypeMapping TypeName="GARAGE_MANAGEMENTModel.CT_PSC">
+              <MappingFragment StoreEntitySet="CT_PSC">
+                <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
+                <ScalarProperty Name="MaTienCong" ColumnName="MaTienCong" />
+                <ScalarProperty Name="SoLan" ColumnName="SoLan" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="MaPhieuSC" ColumnName="MaPhieuSC" />
+                <ScalarProperty Name="MaCTPSC" ColumnName="MaCTPSC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CT_PHIEUNHAP">
+            <EntityTypeMapping TypeName="GARAGE_MANAGEMENTModel.CT_PHIEUNHAP">
+              <MappingFragment StoreEntitySet="CT_PHIEUNHAP">
+                <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
+                <ScalarProperty Name="DonGiaBan" ColumnName="DonGiaBan" />
+                <ScalarProperty Name="DonGiaNhap" ColumnName="DonGiaNhap" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="MaVatTu" ColumnName="MaVatTu" />
+                <ScalarProperty Name="MaPhieuNhap" ColumnName="MaPhieuNhap" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CT_SUDUNGVATTU">
+            <EntityTypeMapping TypeName="GARAGE_MANAGEMENTModel.CT_SUDUNGVATTU">
+              <MappingFragment StoreEntitySet="CT_SUDUNGVATTU">
+                <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
+                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="MaVatTu" ColumnName="MaVatTu" />
+                <ScalarProperty Name="MaCTPSC" ColumnName="MaCTPSC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HIEUXEs">
+            <EntityTypeMapping TypeName="GARAGE_MANAGEMENTModel.HIEUXE">
+              <MappingFragment StoreEntitySet="HIEUXE">
+                <ScalarProperty Name="TenHieuXe" ColumnName="TenHieuXe" />
+                <ScalarProperty Name="MaHieuXe" ColumnName="MaHieuXe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHIEUNHAPs">
+            <EntityTypeMapping TypeName="GARAGE_MANAGEMENTModel.PHIEUNHAP">
+              <MappingFragment StoreEntitySet="PHIEUNHAP">
+                <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
+                <ScalarProperty Name="NgayNhap" ColumnName="NgayNhap" />
+                <ScalarProperty Name="MaPhieuNhap" ColumnName="MaPhieuNhap" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHIEUSUACHUAs">
+            <EntityTypeMapping TypeName="GARAGE_MANAGEMENTModel.PHIEUSUACHUA">
+              <MappingFragment StoreEntitySet="PHIEUSUACHUA">
+                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+                <ScalarProperty Name="NgaySuaChua" ColumnName="NgaySuaChua" />
+                <ScalarProperty Name="BienSo" ColumnName="BienSo" />
+                <ScalarProperty Name="MaPhieuSC" ColumnName="MaPhieuSC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHIEUTHUTIENs">
+            <EntityTypeMapping TypeName="GARAGE_MANAGEMENTModel.PHIEUTHUTIEN">
+              <MappingFragment StoreEntitySet="PHIEUTHUTIEN">
+                <ScalarProperty Name="SoTienThu" ColumnName="SoTienThu" />
+                <ScalarProperty Name="NgayThuTien" ColumnName="NgayThuTien" />
+                <ScalarProperty Name="BienSo" ColumnName="BienSo" />
+                <ScalarProperty Name="MaPTT" ColumnName="MaPTT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TAIKHOANs">
+            <EntityTypeMapping TypeName="GARAGE_MANAGEMENTModel.TAIKHOAN">
+              <MappingFragment StoreEntitySet="TAIKHOAN">
+                <ScalarProperty Name="QuyenHan" ColumnName="QuyenHan" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+                <ScalarProperty Name="TenTaiKhoan" ColumnName="TenTaiKhoan" />
+                <ScalarProperty Name="MaTaiKhoan" ColumnName="MaTaiKhoan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIENCONGs">
+            <EntityTypeMapping TypeName="GARAGE_MANAGEMENTModel.TIENCONG">
+              <MappingFragment StoreEntitySet="TIENCONG">
+                <ScalarProperty Name="GiaTienCong" ColumnName="GiaTienCong" />
+                <ScalarProperty Name="TenTienCong" ColumnName="TenTienCong" />
+                <ScalarProperty Name="MaTienCong" ColumnName="MaTienCong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="THAMSOes">
+            <EntityTypeMapping TypeName="GARAGE_MANAGEMENTModel.THAMSO">
+              <MappingFragment StoreEntitySet="THAMSO">
+                <ScalarProperty Name="ThangBaoCao" ColumnName="ThangBaoCao" />
+                <ScalarProperty Name="PhanTram" ColumnName="PhanTram" />
+                <ScalarProperty Name="XeToiDa" ColumnName="XeToiDa" />
+                <ScalarProperty Name="SoTienThu" ColumnName="SoTienThu" />
+                <ScalarProperty Name="MaThamSo" ColumnName="MaThamSo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VAITROes">
+            <EntityTypeMapping TypeName="GARAGE_MANAGEMENTModel.VAITRO">
+              <MappingFragment StoreEntitySet="VAITRO">
+                <ScalarProperty Name="TenVaiTro" ColumnName="TenVaiTro" />
+                <ScalarProperty Name="MaVaiTro" ColumnName="MaVaiTro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VATTUs">
+            <EntityTypeMapping TypeName="GARAGE_MANAGEMENTModel.VATTU">
+              <MappingFragment StoreEntitySet="VATTU">
+                <ScalarProperty Name="SoLuongTon" ColumnName="SoLuongTon" />
+                <ScalarProperty Name="DonGiaHienTai" ColumnName="DonGiaHienTai" />
+                <ScalarProperty Name="TenVatTu" ColumnName="TenVatTu" />
+                <ScalarProperty Name="MaVatTu" ColumnName="MaVatTu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="XEs">
+            <EntityTypeMapping TypeName="GARAGE_MANAGEMENTModel.XE">
+              <MappingFragment StoreEntitySet="XE">
+                <ScalarProperty Name="TienNo" ColumnName="TienNo" />
+                <ScalarProperty Name="MaHieuXe" ColumnName="MaHieuXe" />
+                <ScalarProperty Name="NgayTiepNhan" ColumnName="NgayTiepNhan" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
+                <ScalarProperty Name="TenChuXe" ColumnName="TenChuXe" />
+                <ScalarProperty Name="BienSo" ColumnName="BienSo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

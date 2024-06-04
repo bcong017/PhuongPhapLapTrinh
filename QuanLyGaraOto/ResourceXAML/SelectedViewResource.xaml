@@ -1,0 +1,53 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:switchview="clr-namespace:QuanLyGaraOto.ViewUserControl.SwitchViewClass"
+                    xmlns:view="clr-namespace:QuanLyGaraOto.ViewUserControl.ViewUC">
+
+    <DataTemplate DataType="{x:Type switchview:SwitchViewCarCheckIn}">
+        <view:CarCheckInUC></view:CarCheckInUC>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type switchview:SwitchViewSalesReport}">
+        <view:SalesReportUC></view:SalesReportUC>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type switchview:SwitchViewAddAccessories}">
+        <view:AddAccessoriesUC></view:AddAccessoriesUC>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type switchview:SwitchViewSearch}">
+        <view:SearchUC></view:SearchUC>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type switchview:SwitchViewAccessoriesReport}">
+        <view:AccessoriesReportUC></view:AccessoriesReportUC>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type switchview:SwitchViewUpdateParameter}">
+        <view:UpdateParameterUC></view:UpdateParameterUC>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type switchview:SwitchViewRepairReceipt}">
+        <view:RepairReceiptUC></view:RepairReceiptUC>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type switchview:SwitchViewBill}">
+        <view:BillUC></view:BillUC>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type switchview:SwitchViewShowWageAndMaterial}">
+        <view:ShowWageAndMaterialUC></view:ShowWageAndMaterialUC>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type switchview:SwitchViewShowAccessoriesList}">
+        <view:ShowAccessoriesListUC></view:ShowAccessoriesListUC>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type switchview:SwitchViewShowWagesList}">
+        <view:ShowWagesListUC></view:ShowWagesListUC>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type switchview:SwitchViewShowCarBrandsList}">
+        <view:ShowCarBrandsListUC></view:ShowCarBrandsListUC>
+    </DataTemplate>
+</ResourceDictionary>
